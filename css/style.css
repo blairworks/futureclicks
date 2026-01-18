@@ -1,0 +1,186 @@
+:root {
+  /* Colors - Humane Retro */
+  --bg-color: #f7f5f0;
+  --text-color: #2a2a2a;
+  --text-muted: #666;
+  --accent-color: #4a5d4e; /* Muted Green */
+  --focus-bg: #e8e6df;
+  --border-color: #d1cfc8;
+  --shadow: 2px 2px 0px rgba(0,0,0,0.05);
+
+  /* Typography */
+  --font-mono: 'Fira Code', 'Courier Prime', 'Courier New', monospace;
+  --font-size-base: 14px;
+  --line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Pins Section */
+#pins-section {
+  margin-bottom: 2rem;
+  padding: 0.75rem;
+  background: var(--focus-bg);
+  border: 1px dashed var(--border-color);
+  min-height: 2.5rem;
+}
+
+#pins-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+/* Grid Layout */
+#dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.category-block h2 {
+  font-size: 0.85rem;
+  padding: 2px 6px;
+  background: var(--text-color);
+  color: var(--bg-color);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.link-list {
+  list-style: none;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 2px;
+  transition: background 0.1s;
+  cursor: default;
+}
+
+.link-item:hover, .link-item:focus-within {
+  background: var(--focus-bg);
+}
+
+.link-item.focused {
+  outline: 2px solid var(--accent-color);
+  background: var(--focus-bg);
+}
+
+.link-content {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  flex-grow: 1;
+}
+
+.link-item img {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  filter: grayscale(100%);
+}
+
+.link-item:hover img, .link-item:focus-within img {
+  filter: none;
+}
+
+.pin-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  color: #ccc;
+  font-size: 0.75rem;
+  transition: color 0.2s;
+}
+
+.link-item:hover .pin-btn, .link-item:focus-within .pin-btn {
+  color: var(--text-muted);
+}
+
+.pin-btn.active {
+  color: var(--accent-color) !important;
+}
+
+.pin-btn:hover {
+  color: var(--text-color) !important;
+}
+
+/* Mini view for Pins shelf */
+.pin-chip {
+  display: flex;
+  align-items: center;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pin-chip img {
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+}
+
+/* Accessibility */
+:focus {
+  outline: none;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
