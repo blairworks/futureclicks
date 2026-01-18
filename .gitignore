@@ -1,0 +1,10 @@
+# Internal Notes
+notes/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Temp Files
+*.tmp
+diff.txt
