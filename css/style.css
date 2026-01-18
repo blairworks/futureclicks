@@ -1,13 +1,18 @@
 :root {
-  /* Colors - Humane Retro (Light) */
+  /* Colors - Light Mode (Humane Retro) */
   --bg-color: #f7f5f0;
+  --bg-tier-2: #f0ede4;
+  /* Subtly darker for sections */
   --text-color: #2a2a2a;
-  --text-muted: #666;
-  --accent-color: #4a5d4e;
-  /* Muted Green */
-  --focus-bg: #e8e6df;
+  --text-muted: #8c8c8c;
+  --accent-color: #555555;
+  /* Monochrome accent */
+  --focus-bg: #2a2a2a;
+  /* Reverse video background */
+  --focus-text: #f7f5f0;
+  /* Reverse video text */
   --border-color: #d1cfc8;
-  --shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+  --header-rule: #d1cfc8;
 
   /* Typography */
   --font-mono: 'Fira Code', 'Courier Prime', 'Courier New', monospace;
@@ -16,15 +21,20 @@
 }
 
 [data-theme="dark"] {
+  /* Colors - Dark Mode (TRS-80 Dark) */
   --bg-color: #121212;
+  --bg-tier-2: #1e1e1e;
+  /* Extra tier for hierarchy */
   --text-color: #d2d2d2;
   /* Off-white phosphor */
-  --text-muted: #888;
-  --accent-color: #889e8b;
-  /* Lighter green for dark bg */
-  --focus-bg: #2a2a2a;
-  --border-color: #333;
-  --shadow: 2px 2px 0px rgba(255, 255, 255, 0.05);
+  --text-muted: #666666;
+  --accent-color: #aaaaaa;
+  --focus-bg: #d2d2d2;
+  /* Reverse video background */
+  --focus-text: #121212;
+  /* Reverse video text */
+  --border-color: #2a2a2a;
+  --header-rule: #333333;
 }
 
 * {
@@ -39,45 +49,64 @@ body {
   font-family: var(--font-mono);
   font-size: var(--font-size-base);
   line-height: var(--line-height);
-  padding: 1rem;
-  max-width: 1200px;
+  padding: 1.5rem;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
 header {
   margin-bottom: 2rem;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--header-rule);
 }
 
 header h1 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-weight: 500;
 }
 
 header p {
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+}
+
+/* Header Controls */
+.header-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.1s;
+}
+
+.header-btn:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
 }
 
 /* Pins Section */
 #pins-section {
-  margin-bottom: 2rem;
-  padding: 0.75rem;
-  background: var(--focus-bg);
-  border: 1px dashed var(--border-color);
-  min-height: 2.5rem;
+  margin-bottom: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-tier-2);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
 }
 
 #pins-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .section-label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -88,18 +117,22 @@ header p {
 /* Grid Layout */
 #dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2.5rem 2rem;
 }
 
 .category-block h2 {
-  font-size: 0.85rem;
-  padding: 2px 6px;
-  background: var(--text-color);
-  color: var(--bg-color);
-  display: inline-block;
-  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding-bottom: 4px;
+  margin-bottom: 1rem;
   text-transform: uppercase;
+  border-bottom: 1px solid var(--border-color);
+  display: block;
+  letter-spacing: 0.5px;
+  /* Removed background and color overrides to allow calm light mode */
+  background: none;
+  color: inherit;
 }
 
 .link-list {
@@ -110,21 +143,18 @@ header p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.25rem 0.5rem;
-  margin-left: -0.5rem;
-  border-radius: 2px;
-  transition: background 0.1s;
-  cursor: default;
+  padding: 0.2rem 0.4rem;
+  margin-left: -0.4rem;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background 0.05s;
 }
 
+/* Hover & Focus (Reverse Video) */
 .link-item:hover,
-.link-item:focus-within {
-  background: var(--focus-bg);
-}
-
 .link-item.focused {
-  outline: 2px solid var(--accent-color);
   background: var(--focus-bg);
+  color: var(--focus-text);
 }
 
 .link-content {
@@ -133,85 +163,105 @@ header p {
   text-decoration: none;
   color: inherit;
   flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .link-item img {
   width: 16px;
   height: 16px;
-  margin-right: 8px;
-  filter: grayscale(100%);
+  margin-right: 10px;
+  filter: grayscale(100%) opacity(0.7);
+  transition: filter 0.1s;
 }
 
+/* Reverse video icon handling */
 .link-item:hover img,
-.link-item:focus-within img {
-  filter: none;
+.link-item.focused img {
+  filter: grayscale(100%) invert(1) brightness(2);
 }
 
+[data-theme="dark"] .link-item:hover img,
+[data-theme="dark"] .link-item.focused img {
+  filter: grayscale(100%) brightness(0.2);
+}
+
+/* Star/Pin Icon */
 .pin-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 2px 4px;
-  color: #ccc;
+  padding: 0 4px;
+  color: var(--text-muted);
   font-size: 0.75rem;
-  transition: color 0.2s;
+  opacity: 0.4;
+  transition: opacity 0.1s, color 0.1s;
 }
 
 .link-item:hover .pin-btn,
-.link-item:focus-within .pin-btn {
-  color: var(--text-muted);
+.link-item.focused .pin-btn {
+  opacity: 1;
+  color: var(--focus-text);
 }
 
 .pin-btn.active {
-  color: var(--accent-color) !important;
-}
-
-.pin-btn:hover {
-  color: var(--text-color) !important;
-}
-
-.header-btn {
-  background: none;
-  border: 1px solid var(--border-color);
+  opacity: 1 !important;
   color: var(--text-color);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  cursor: pointer;
-  text-transform: uppercase;
 }
 
-.header-btn:hover {
-  background: var(--focus-bg);
+.link-item.focused .pin-btn.active {
+  color: var(--focus-text);
 }
 
-/* Mini view for Pins shelf */
+/* Pins shelf chips */
 .pin-chip {
   display: flex;
   align-items: center;
   background: var(--bg-color);
   border: 1px solid var(--border-color);
-  padding: 2px 8px;
-  font-size: 0.85rem;
+  padding: 1px 10px;
+  font-size: 0.8rem;
   text-decoration: none;
   color: inherit;
+  transition: all 0.1s;
+}
+
+.pin-chip:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
 }
 
 .pin-chip img {
   width: 14px;
   height: 14px;
-  margin-right: 6px;
+  margin-right: 8px;
+  filter: grayscale(100%) opacity(0.7);
+}
+
+.pin-chip:hover img {
+  filter: grayscale(100%) invert(1);
 }
 
 /* Accessibility */
 :focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.link-item:focus-within {
   outline: none;
+  /* We use .focused class */
 }
 
 /* Mobile */
 @media (max-width: 600px) {
   #dashboard-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+  }
+
+  body {
+    padding: 1rem;
   }
 }
