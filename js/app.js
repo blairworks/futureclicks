@@ -6,6 +6,7 @@ const THEME_KEY = 'futureclicks_theme';
 // State
 let pins = JSON.parse(localStorage.getItem(PINS_KEY) || '[]');
 let focusedIndex = -1;
+let isKeyboardMode = false;
 let flatList = []; // For keyboard navigation
 
 const pinsContainer = document.getElementById('pins-container');
@@ -141,6 +142,11 @@ function togglePin(id) {
 
 function setupKeyboardNav() {
     document.addEventListener('keydown', (e) => {
+        // Toggle keyboard mode on specific keys
+        if (['ArrowDown', 'ArrowUp', 'Enter', 'p', 'P', 't', 'T'].includes(e.key)) {
+            isKeyboardMode = true;
+        }
+
         if (e.key === 'ArrowDown') {
             e.preventDefault();
             moveFocus(1);
@@ -160,14 +166,25 @@ function setupKeyboardNav() {
         }
     });
 
-    // Handle clicks for focus
+    // Clear keyboard mode on mouse interaction
+    document.addEventListener('mousedown', () => {
+        isKeyboardMode = false;
+        updateFocus();
+    });
+
+    // Handle clicks for focus tracking
     gridContainer.addEventListener('click', (e) => {
         const item = e.target.closest('.link-item');
         if (item) {
             const index = flatList.findIndex(f => f.element === item);
             if (index !== -1) {
                 focusedIndex = index;
+                // We update focus state (it will clear highlight because isKeyboardMode is false)
                 updateFocus();
+                // Ensure native focus doesn't linger on click
+                if (document.activeElement instanceof HTMLElement) {
+                    document.activeElement.blur();
+                }
             }
         }
     });
@@ -187,7 +204,8 @@ function moveFocus(dir) {
 
 function updateFocus() {
     flatList.forEach((f, i) => {
-        f.element.classList.toggle('focused', i === focusedIndex);
+        // Highlight only if in keyboard mode and this is the focused index
+        f.element.classList.toggle('focused', isKeyboardMode && i === focusedIndex);
     });
 }
 

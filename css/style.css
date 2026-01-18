@@ -157,6 +157,13 @@ header p {
   color: var(--focus-text);
 }
 
+.link-item:active {
+  background: var(--bg-tier-2);
+  color: var(--text-color);
+  transition: none;
+  /* Instant feedback */
+}
+
 .link-content {
   display: flex;
   align-items: center;
@@ -244,14 +251,13 @@ header p {
 }
 
 /* Accessibility */
-:focus {
+:focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
 
-.link-item:focus-within {
+:focus:not(:focus-visible) {
   outline: none;
-  /* We use .focused class */
 }
 
 /* Mobile */
