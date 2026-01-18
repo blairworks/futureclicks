@@ -1,17 +1,30 @@
 :root {
-  /* Colors - Humane Retro */
+  /* Colors - Humane Retro (Light) */
   --bg-color: #f7f5f0;
   --text-color: #2a2a2a;
   --text-muted: #666;
-  --accent-color: #4a5d4e; /* Muted Green */
+  --accent-color: #4a5d4e;
+  /* Muted Green */
   --focus-bg: #e8e6df;
   --border-color: #d1cfc8;
-  --shadow: 2px 2px 0px rgba(0,0,0,0.05);
+  --shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
 
   /* Typography */
   --font-mono: 'Fira Code', 'Courier Prime', 'Courier New', monospace;
   --font-size-base: 14px;
   --line-height: 1.4;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #d2d2d2;
+  /* Off-white phosphor */
+  --text-muted: #888;
+  --accent-color: #889e8b;
+  /* Lighter green for dark bg */
+  --focus-bg: #2a2a2a;
+  --border-color: #333;
+  --shadow: 2px 2px 0px rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -104,7 +117,8 @@ header p {
   cursor: default;
 }
 
-.link-item:hover, .link-item:focus-within {
+.link-item:hover,
+.link-item:focus-within {
   background: var(--focus-bg);
 }
 
@@ -128,7 +142,8 @@ header p {
   filter: grayscale(100%);
 }
 
-.link-item:hover img, .link-item:focus-within img {
+.link-item:hover img,
+.link-item:focus-within img {
   filter: none;
 }
 
@@ -142,7 +157,8 @@ header p {
   transition: color 0.2s;
 }
 
-.link-item:hover .pin-btn, .link-item:focus-within .pin-btn {
+.link-item:hover .pin-btn,
+.link-item:focus-within .pin-btn {
   color: var(--text-muted);
 }
 
@@ -152,6 +168,21 @@ header p {
 
 .pin-btn:hover {
   color: var(--text-color) !important;
+}
+
+.header-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.header-btn:hover {
+  background: var(--focus-bg);
 }
 
 /* Mini view for Pins shelf */

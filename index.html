@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
-        <h1>Futureclicks</h1>
-        <p>Retro-inspired control panel for AI-first solo thinkers.</p>
+        <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div>
+                <h1>Futureclicks</h1>
+                <p>Retro-inspired control panel for AI-first solo thinkers.</p>
+            </div>
+            <button id="theme-toggle" class="header-btn" title="Toggle Theme (T)" aria-label="Toggle Theme">[ MODE:
+                LIGHT ]</button>
+        </div>
     </header>
 
     <section id="pins-section">
@@ -28,10 +36,12 @@
         <!-- Categories and links will be rendered here -->
     </main>
 
-    <footer style="margin-top: 4rem; padding-top: 1rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.75rem;">
+    <footer
+        style="margin-top: 4rem; padding-top: 1rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.75rem;">
         <p>Built for the independent agent. No cookies. Local storage only.</p>
     </footer>
 
     <script type="module" src="js/app.js"></script>
 </body>
+
 </html>

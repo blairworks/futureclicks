@@ -14,4 +14,17 @@ A vibe-coded, retro-inspired dashboard for AI-first solo entrepreneurs.
 - Hosted on Cloudflare Pages (suggested)
 
 ## Local Development
-Just open `index.html` in your browser.
+
+Futureclicks uses modern ES modules. Due to browser security restrictions, it **cannot** be opened directly via `file://` (double-clicking `index.html`).
+
+To run it locally, use a local development server:
+
+```bash
+# Using Python (recommended)
+python -m http.server 5173
+
+# Or using Node.js (if installed)
+npx serve .
+```
+
+Then open `http://localhost:5173` (or the port provided) in your browser.

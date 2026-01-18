@@ -1,9 +1,10 @@
 import categoryData from './data.js';
 
-const STORAGE_KEY = 'futureclicks_pins';
+const PINS_KEY = 'futureclicks_pins';
+const THEME_KEY = 'futureclicks_theme';
 
 // State
-let pins = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+let pins = JSON.parse(localStorage.getItem(PINS_KEY) || '[]');
 let focusedIndex = -1;
 let flatList = []; // For keyboard navigation
 
@@ -11,9 +12,35 @@ const pinsContainer = document.getElementById('pins-container');
 const gridContainer = document.getElementById('dashboard-grid');
 
 function init() {
+    initTheme();
     renderGrid();
     renderPins();
     setupKeyboardNav();
+    setupThemeToggle();
+}
+
+function initTheme() {
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = savedTheme || (systemDark ? 'dark' : 'light');
+    setTheme(theme);
+}
+
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(THEME_KEY, theme);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = `[ MODE: ${theme.toUpperCase()} ]`;
+}
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+function setupThemeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.addEventListener('click', toggleTheme);
 }
 
 function renderGrid() {
@@ -102,7 +129,7 @@ function togglePin(id) {
     } else {
         pins.push(id);
     }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(pins));
+    localStorage.setItem(PINS_KEY, JSON.stringify(pins));
     renderGrid();
     renderPins();
 
@@ -128,6 +155,8 @@ function setupKeyboardNav() {
             if (focusedIndex !== -1) {
                 togglePin(flatList[focusedIndex].id);
             }
+        } else if (e.key === 't' || e.key === 'T') {
+            toggleTheme();
         }
     });
 
