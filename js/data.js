@@ -88,7 +88,8 @@ const categoryData = [
       { id: "notion", label: "Notion", url: "https://www.notion.so" },
       { id: "substack", label: "Substack", url: "https://substack.com" },
       { id: "zotero", label: "Zotero", url: "https://www.zotero.org" },
-      { id: "overleaf", label: "Overleaf", url: "https://www.overleaf.com" }
+      { id: "overleaf", label: "Overleaf", url: "https://www.overleaf.com" },
+      { id: "lesswrong", label: "LessWrong", url: "https://www.lesswrong.com" }
     ]
   },
 
