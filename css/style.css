@@ -22,19 +22,19 @@
 
 [data-theme="dark"] {
   /* Colors - Dark Mode (TRS-80 Dark) */
-  --bg-color: #121212;
-  --bg-tier-2: #1e1e1e;
+  --bg-color: #1a1c1e;
+  --bg-tier-2: #232629;
   /* Extra tier for hierarchy */
-  --text-color: #d2d2d2;
+  --text-color: #e0e0e0;
   /* Off-white phosphor */
-  --text-muted: #666666;
-  --accent-color: #aaaaaa;
-  --focus-bg: #d2d2d2;
+  --text-muted: #a3a3a3;
+  --accent-color: #c0c0c0;
+  --focus-bg: #2b2f33;
   /* Reverse video background */
-  --focus-text: #121212;
+  --focus-text: #eaeaea;
   /* Reverse video text */
-  --border-color: #2a2a2a;
-  --header-rule: #333333;
+  --border-color: #31363a;
+  --header-rule: #3a4046;
 }
 
 * {
